@@ -1,0 +1,2 @@
+# Microservice-Project-Spring2020
+ASRC Federal Mission Solutions is in the process of evaluating some of our larger programs for decomposition into microservices. The team will start with a single, monolithic application of their choosing and decompose it into a group of microservices that provide the same functionality.  The solution will leverage Docker Containers for the runtime environment. The team’s experience and recommendations will provide valuable insights for AFMS into software decomposition process.

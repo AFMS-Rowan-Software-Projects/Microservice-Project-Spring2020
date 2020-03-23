@@ -1,0 +1,68 @@
+$lead: #255c69;
+$accent: #6b949e;
+$secondary: #f2f2f2;
+
+$theme-colors: (
+        "lead": $lead,
+        "accent": $accent,
+        "secondary": $secondary
+);
+
+body {
+  height: 100%
+}
+
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.content {
+  flex: 1;
+}
+
+.list-group-item {
+  background-color: $secondary !important;
+}
+
+#courseList {
+  max-height: 30em;
+}
+
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1500px,
+);
+
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1140px,
+        xxl: 1450px,
+);
+
+.sidebar {
+  background-color: $accent;
+  color: white;
+  height: 100%;
+  font-size: 1.1rem;
+}
+
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/variables";
+
+.nav-link {
+  color: #d7f5f7 !important;
+}
+
+.nav-link:hover {
+  color: white !important;
+  //text-decoration: underline;
+}

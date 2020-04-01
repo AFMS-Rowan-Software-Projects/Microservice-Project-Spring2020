@@ -13,4 +13,4 @@ Before making changes, make sure you are not on the master branch. Use `git chec
 should also make sure everything is up-to-date by running `git pull`.
 
 To upload your work, commit all of your changes using `git commit <path> -m "<message>"` and push them up by using
-`git push origin <branch>`. *DO NOT PUSH TO MASTER.*
+`git push origin <branch>`. **DO NOT PUSH TO MASTER UNLESS YOU'RE ABSOLUTELY SURE OF WHAT YOU'RE DOING.**

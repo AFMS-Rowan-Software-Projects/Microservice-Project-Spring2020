@@ -13,10 +13,8 @@ export default class CoursePreview extends React.Component {
 		return (
 			<div>
 				<h5>{this.props.title}</h5>
-				<Row className={"pl-3"}>
-					<p>{this.props.desc}</p>
-					<Button variant={"primary"} className={"mx-3"}>Register</Button>
-				</Row>
+				<p>{this.props.desc}</p>
+				<Button variant={"primary"} href={`/courses/${this.props.id}`}>View Course</Button>
 			</div>
 		);
 	}

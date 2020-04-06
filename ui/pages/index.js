@@ -4,84 +4,74 @@ import Page from "../components/Page";
 import {Button, Card, Col, Collapse, Container, Nav, Navbar, NavItem, NavLink, Row} from "react-bootstrap";
 import Sidebar from "../components/Sidebar";
 import CoursePreview from "../components/CoursePreview";
+import fetch from "node-fetch";
 
-const Home = () => {
+const listSplit = 2;
+export default class Homepage extends React.Component {
 
-    const [open, setOpen] = useState(false);
+    static async getInitialProps(context) {
 
-    return (
-        <div>
-            <Head>
-                <title>Create Next App</title>
-                <link rel="icon" href="/public/favicon.ico"/>
-            </Head>
+        let courses = [];
+        await fetch("http://abctrainingapi.azurewebsites.net/api/course")
+            .then(res => res.json())
+            .then((data => {courses = data}));
 
-            <Page>
-                <Row className={"h-100"}>
-                    <div className={"sidebar pt-3 col-12 col-sm-7 col-md-4 col-lg-3 d-none d-md-block"}>
-                        <div>
-                            <Navbar variant={"dark"}>
-                                <Nav className={"flex-column"}>
-                                    <NavLink>Registration</NavLink>
-                                    <div className={"ml-5"}>
-                                        <NavLink active={false}>New students</NavLink>
-                                        <NavLink active={false}>Current students</NavLink>
+        return {
+            courses: courses
+        }
+
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false,
+        };
+    }
+
+    render() {
+        return (
+            <div>
+                <Head>
+                    <title>Create Next App</title>
+                    <link rel="icon" href="/public/favicon.ico"/>
+                </Head>
+
+                <Page>
+
+                    <div>
+                        <h1>EMT Training course list</h1>
+                        <p>Here you can find all courses being offered for the EMT training program. {this.props.test}</p>
+                        <div id={"courseList"} className={"bg-secondary rounded d-inline-block list-group-flush p-1"}>
+                            <div>
+                                {this.props.courses.slice(0, listSplit).map(course => { return (
+                                    <div className={"list-group-item"}><CoursePreview id={course.Id} key={course.Id} title={course.CourseName}
+                                                                                      desc={course.CourseDesc}/>
                                     </div>
-                                    <NavLink active={false}>Tuition</NavLink>
-                                    <div className={"ml-5"}>
-                                        <NavLink active={false}>Payment options</NavLink>
-                                        <NavLink active={false}>Reduced rates</NavLink>
-                                    </div>
-                                    <NavLink active={false}>Information sessions</NavLink>
-                                    <NavLink active={false}>Contact</NavLink>
-                                </Nav>
-                            </Navbar>
-                        </div>
-                    </div>
-                    <div className={"col p-4"}>
-                        <div>
-                            <h1>EMT Training course list</h1>
-                            <p>Here you can find all courses being offered for the EMT training program.</p>
-                            <div id={"courseList"} className={"bg-secondary py-3 rounded d-inline-block list-group-flush"}>
-                                <div>
-                                    <div className={"list-group-item"}><CoursePreview title={"CPR certification"}
-                                                                                      desc={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget nibh lacus. Etiam dui urna, sollicitudin vel odio vel, tempor."}/>
-                                    </div>
-                                    <div className={"list-group-item"}><CoursePreview title={"CPR certification"}
-                                                                                      desc={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget nibh lacus. Etiam dui urna, sollicitudin vel odio vel, tempor."}/>
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div className={"d-flex justify-content-center"}>
-                                    <a href={"javascript:void(0);"} id={"viewAll"} onClick={() => {document.getElementById("viewAll").style.display = "none"; return setOpen(!open)}}>View all</a>
-                                </div>
-                                <Collapse in={open}>
-                                    <div id={"listCollapse"}>
-                                        <div className={"list-group-item"}><CoursePreview title={"CPR certification"}
-                                                                                          desc={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget nibh lacus. Etiam dui urna, sollicitudin vel odio vel, tempor."}/>
-                                        </div>
-                                        <div className={"list-group-item"}><CoursePreview title={"CPR certification"}
-                                                                                          desc={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget nibh lacus. Etiam dui urna, sollicitudin vel odio vel, tempor."}/>
-                                        </div>
-                                        <div className={"list-group-item"}><CoursePreview title={"CPR certification"}
-                                                                                          desc={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget nibh lacus. Etiam dui urna, sollicitudin vel odio vel, tempor."}/>
-                                        </div>
-                                        <div className={"list-group-item"}><CoursePreview title={"CPR certification"}
-                                                                                          desc={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget nibh lacus. Etiam dui urna, sollicitudin vel odio vel, tempor."}/>
-                                        </div>
-                                        <div className={"list-group-item"}><CoursePreview title={"CPR certification"}
-                                                                                          desc={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget nibh lacus. Etiam dui urna, sollicitudin vel odio vel, tempor."}/>
-                                        </div>
-                                    </div>
-                                </Collapse>
+                                )})}
                             </div>
+                            <div id={"viewAll"}>
+                                <hr/>
+                                <div className={"d-flex justify-content-center pb-3"}>
+                                    <a href={"javascript:void(0);"} onClick={() => {document.getElementById("viewAll").style.display = "none"; this.setState(state => ({open: !state.open}))}}>View all</a>
+                                </div>
+                            </div>
+                            <Collapse in={this.state.open}>
+                                <div id={"listCollapse"} className={"border-top"}>
+                                    {this.props.courses.slice(listSplit, this.props.courses.length).map(course => { return (
+                                        <div className={"list-group-item"}><CoursePreview id={course.Id} key={course.Id} title={course.CourseName}
+                                                                                          desc={course.CourseDesc}/>
+                                        </div>
+                                    )})}
+                                </div>
+                            </Collapse>
                         </div>
                     </div>
-                </Row>
-            </Page>
 
-        </div>
-    );
-};
+                </Page>
 
-export default Home
+            </div>
+        );
+
+    }
+}

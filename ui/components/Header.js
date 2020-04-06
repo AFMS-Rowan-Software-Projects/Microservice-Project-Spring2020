@@ -7,7 +7,7 @@ export default class Header extends React.Component {
 		return (
 			<div>
 				<Navbar variant={"dark"} bg={"lead"} className={"px-5"}>
-					<NavbarBrand><h1>ABC Training</h1></NavbarBrand>
+					<NavbarBrand href={"/"}><h1>ABC Training</h1></NavbarBrand>
 				</Navbar>
 			</div>
 		);

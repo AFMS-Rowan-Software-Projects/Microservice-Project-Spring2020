@@ -9,6 +9,18 @@ const Course = props => {
 
 	const router = useRouter();
 
+	if (props.err) {
+		return (
+			<div>
+				<Page>
+					<h1>Error 500</h1>
+					<h4>Gadzooks!</h4>
+					<p>Something went wrong</p>
+				</Page>
+			</div>
+		)
+	}
+
 	return (
 		<div>
 			<Page>
@@ -34,9 +46,13 @@ Course.getInitialProps = async context => {
 	const query = context.query.id[0];
 	const props = {};
 
-	await fetch(`${API_URL}/courses/${query}`)
-		.then(res => res.json())
-		.then((data => {props.course = data}));
+	try {
+		await fetch(`${API_URL}/courses/${query}`)
+			.then(res => res.json())
+			.then((data => {props.course = data}));
+	} catch (e) {
+		props.err = e;
+	}
 
 	return props;
 

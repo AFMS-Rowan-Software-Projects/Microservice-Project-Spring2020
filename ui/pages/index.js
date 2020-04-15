@@ -13,11 +13,17 @@ export default class Homepage extends React.Component {
     static async getInitialProps(context) {
 
         let courses = [];
-        await fetch(API_URL + "/courses")
-            .then(res => res.json())
-            .then((data => {courses = data}));
+        let err;
+        try {
+            await fetch(API_URL + "/courses")
+                .then(res => res.json())
+                .then((data => {courses = data}));
+        } catch (e) {
+            err = e;
+        }
 
         return {
+            err: err,
             courses: courses
         }
 
@@ -31,6 +37,20 @@ export default class Homepage extends React.Component {
     }
 
     render() {
+
+        // TODO: this is a bad way of doing this, the entire page should be rendered as an "error page"
+        if (this.props.err) {
+            return (
+                <div>
+                    <Page>
+                        <h1>Error 500</h1>
+                        <h4>Gadzooks!</h4>
+                        <p>Something went wrong</p>
+                    </Page>
+                </div>
+            )
+        }
+
         return (
             <div>
                 <Head>

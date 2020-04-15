@@ -1,8 +1,19 @@
 // import App from 'next/app'
 import "../css/theme.scss"
 import React from "react";
+import fetch from "node-fetch";
 
+// TODO: don't export this, use function below
 export const API_URL = "http://abctrainingapi.azurewebsites.net/api";
+
+// TODO: use this
+export async function api_fetch(req) {
+	let res;
+	await fetch(`${API_URL}/${req}`)
+		.then(res => res.json())
+		.then((data => {res = data}));
+	return res;
+}
 
 function MyApp({ Component, pageProps }) {
 	return <Component {...pageProps} />

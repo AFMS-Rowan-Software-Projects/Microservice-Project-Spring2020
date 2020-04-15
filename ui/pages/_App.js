@@ -2,7 +2,7 @@
 import "../css/theme.scss"
 import React from "react";
 
-export const API_URL = "http://abctrainingapi.azurewebsites.net/api/";
+export const API_URL = "http://abctrainingapi.azurewebsites.net/api";
 
 function MyApp({ Component, pageProps }) {
 	return <Component {...pageProps} />

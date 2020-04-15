@@ -3,6 +3,7 @@ import {useRouter} from "next/router";
 import Page from "../../components/Page";
 import fetch from "node-fetch";
 import {Button} from "react-bootstrap";
+import {API_URL} from "../_App";
 
 const Course = props => {
 
@@ -33,7 +34,7 @@ Course.getInitialProps = async context => {
 	const query = context.query.id[0];
 	const props = {};
 
-	await fetch(`http://abctrainingapi.azurewebsites.net/api/course/${query}`)
+	await fetch(`${API_URL}/courses/${query}`)
 		.then(res => res.json())
 		.then((data => {props.course = data}));
 

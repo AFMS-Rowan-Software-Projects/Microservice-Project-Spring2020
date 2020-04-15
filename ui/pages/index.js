@@ -5,6 +5,7 @@ import {Button, Card, Col, Collapse, Container, Nav, Navbar, NavItem, NavLink, R
 import Sidebar from "../components/Sidebar";
 import CoursePreview from "../components/CoursePreview";
 import fetch from "node-fetch";
+import {API_URL} from "./_App";
 
 const listSplit = 2;
 export default class Homepage extends React.Component {
@@ -12,7 +13,7 @@ export default class Homepage extends React.Component {
     static async getInitialProps(context) {
 
         let courses = [];
-        await fetch("http://abctrainingapi.azurewebsites.net/api/course")
+        await fetch(API_URL + "/courses")
             .then(res => res.json())
             .then((data => {courses = data}));
 

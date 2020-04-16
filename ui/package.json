@@ -13,10 +13,10 @@
     "jquery": "^3.4.1",
     "next": "9.2.2",
     "next-images": "latest",
+    "node-fetch": "latest",
     "node-sass": "^4.13.1",
     "react": "16.13.0",
     "react-bootstrap": "^1.0.0-beta.17",
-    "react-dom": "16.13.0",
-    "node-fetch": "latest"
+    "react-dom": "16.13.0"
   }
 }

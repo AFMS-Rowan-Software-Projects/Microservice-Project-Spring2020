@@ -4,7 +4,7 @@ import React from "react";
 import fetch from "node-fetch";
 
 // TODO: don't export this, use function below
-export const API_URL = "http://abctrainingapi.azurewebsites.net/api";
+export const API_URL = "http://pinizz68.somee.com/api";
 
 // TODO: use this
 export async function api_fetch(req) {

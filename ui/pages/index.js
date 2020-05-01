@@ -2,10 +2,10 @@ import Head from 'next/head'
 import React, {useState} from "react";
 import Page from "../components/Page";
 import {Button, Card, Col, Collapse, Container, Nav, Navbar, NavItem, NavLink, Row} from "react-bootstrap";
-import Sidebar from "../components/Sidebar";
 import CoursePreview from "../components/CoursePreview";
 import fetch from "node-fetch";
 import {API_URL} from "./_App";
+import Error500 from "../components/error/Error500";
 
 const listSplit = 2;
 export default class Homepage extends React.Component {
@@ -38,16 +38,9 @@ export default class Homepage extends React.Component {
 
     render() {
 
-        // TODO: this is a bad way of doing this, the entire page should be rendered as an "error page"
         if (this.props.err) {
             return (
-                <div>
-                    <Page>
-                        <h1>Error 500</h1>
-                        <h4>Gadzooks!</h4>
-                        <p>Something went wrong</p>
-                    </Page>
-                </div>
+                <Error500/>
             )
         }
 

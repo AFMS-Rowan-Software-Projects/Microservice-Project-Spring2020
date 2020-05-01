@@ -54,37 +54,33 @@ export default class CreateCourse extends React.Component {
 
 		e.preventDefault();
 		const name = document.getElementById("courseName").value;
-		const desc = document.getElementById("courseDesc").value;
-		const tuition = parseFloat(document.getElementById("courseTuition").value);
-		const fee = parseFloat(document.getElementById("courseFee").value);
+		const desc = document.getElementById("courseName").value;
+		const tuition = document.getElementById("courseName").value;
+		const fee = document.getElementById("courseName").value;
 
 
 		const data = {
-			CourseName: name,
-			CourseDesc: desc,
-			Tuition: tuition,
-			Fees: fee,
-			FeeDesc: "Fee",
-			Active: 1,
-			CategoryId: 2
+			"CourseName": name,
+			"CourseDesc": desc,
+			"Tuition": tuition,
+			"Fees": fee,
+			"FeeDesc": "Fee",
+			"Active": 1,
+			"CategoryId": 2
 		};
 
 		// TODO: error handling
 		const res = await fetch(API_URL + "/courses", {
-			method: "POST",
-			headers: {
+			"method": "POST",
+			"mode": "no-cors",
+			"headers": {
 				"Content-Type": "application/json",
-				"Accept": "*/*",
-				"Accept-Encoding": "gzip, deflate, br"
+				"Accept": "application/json, application/xml, text/plain, text/html, *.*",
 			},
-			body: JSON.stringify(data)
+			"body": JSON.stringify(data)
 		});
 
-
-		if (res.ok) {
-			const body = await res.json();
-			document.location = `/courses/${body.Id}`;
-		}
+		console.log(res.json())
 
 	}
 

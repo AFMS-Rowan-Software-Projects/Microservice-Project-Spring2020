@@ -74,13 +74,18 @@ export default class CreateCourse extends React.Component {
 			"method": "POST",
 			"mode": "no-cors",
 			"headers": {
-				"Content-Type": "application/json",
-				"Accept": "application/json, application/xml, text/plain, text/html, *.*",
+				"Content-Type": "text/json",
+				"Accept": "*/*",
+				"Host": "pinizz68.somee.com",
+				"Accept-Encoding": "gzip, deflate, br"
 			},
 			"body": JSON.stringify(data)
 		});
 
-		console.log(res.json())
+		console.log(res);
+		if (res.body) {
+			document.location = "/courses/" + res.body.Id;
+		}
 
 	}
 

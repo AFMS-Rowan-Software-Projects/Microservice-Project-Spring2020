@@ -76,7 +76,6 @@ export default class CreateCourse extends React.Component {
 			"headers": {
 				"Content-Type": "text/json",
 				"Accept": "*/*",
-				"Host": "pinizz68.somee.com",
 				"Accept-Encoding": "gzip, deflate, br"
 			},
 			"body": JSON.stringify(data)

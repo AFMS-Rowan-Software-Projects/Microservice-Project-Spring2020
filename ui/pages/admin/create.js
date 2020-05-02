@@ -54,9 +54,9 @@ export default class CreateCourse extends React.Component {
 
 		e.preventDefault();
 		const name = document.getElementById("courseName").value;
-		const desc = document.getElementById("courseName").value;
-		const tuition = document.getElementById("courseName").value;
-		const fee = document.getElementById("courseName").value;
+		const desc = document.getElementById("courseDesc").value;
+		const tuition = document.getElementById("courseTuition").value;
+		const fee = document.getElementById("courseFee").value;
 
 
 		const data = {
@@ -70,17 +70,18 @@ export default class CreateCourse extends React.Component {
 		};
 
 		// TODO: error handling
-		const res = await fetch(API_URL + "/courses", {
+		const res = await (await fetch(API_URL + "/courses", {
 			"method": "POST",
-			"mode": "no-cors",
 			"headers": {
 				"Content-Type": "application/json",
 				"Accept": "application/json, application/xml, text/plain, text/html, *.*",
 			},
 			"body": JSON.stringify(data)
-		});
+		})).json();
 
-		console.log(res.json())
+		if (res.Id) {
+			document.location = `/courses/${res.Id}`
+		}
 
 	}
 

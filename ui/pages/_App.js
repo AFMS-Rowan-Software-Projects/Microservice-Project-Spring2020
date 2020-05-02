@@ -3,8 +3,11 @@ import "../css/theme.scss"
 import React from "react";
 import fetch from "node-fetch";
 
+const WEB_URL = process.env.NODE_ENV !== "production" ? "http://localhost:3000" : "http://example";
+const PROD_URL = "http://example"; // TODO: implement
+
 // TODO: don't export this, use function below
-export const API_URL = "http://pinizz68.somee.com/api";
+export const API_URL = `${WEB_URL}/api`;
 
 // TODO: use this
 export async function api_fetch(req) {

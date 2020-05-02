@@ -60,33 +60,30 @@ export default class CreateCourse extends React.Component {
 
 
 		const data = {
-			"CourseName": name,
-			"CourseDesc": desc,
-			"Tuition": tuition,
-			"Fees": fee,
-			"FeeDesc": "Fee",
-			"Active": 1,
-			"CategoryId": 2
+			CourseName: name,
+			CourseDesc: desc,
+			Tuition: tuition,
+			Fees: fee,
+			FeeDesc: "Fee",
+			Active: 1,
+			CategoryId: 2
 		};
-
-		console.log(data);
-		console.log(JSON.stringify(data));
 
 		// TODO: error handling
 		const res = await fetch(API_URL + "/courses", {
-			"method": "POST",
-			"mode": "no-cors",
-			"headers": {
+			method: "POST",
+			headers: {
 				"Content-Type": "application/json",
 				"Accept": "*/*",
 				"Accept-Encoding": "gzip, deflate, br"
 			},
-			"body": data
+			body: JSON.stringify(data)
 		});
 
-		console.log(res);
-		if (res.body) {
-			document.location = "/courses/" + res.body.Id;
+
+		if (res.ok) {
+			const body = await res.json();
+			document.location = `/courses/${body.Id}`;
 		}
 
 	}

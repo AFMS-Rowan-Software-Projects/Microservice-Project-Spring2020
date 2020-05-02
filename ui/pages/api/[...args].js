@@ -7,7 +7,7 @@ export const config = {
 };
 
 export default createProxyMiddleware({
-	target: "http://pinizz68.somee.com",
+	target: "http://localhost:3001/",
 	changeOrigin: true,
 	api: {
 		bodyParser: false

@@ -21,6 +21,11 @@ export default class Sidebar extends React.Component {
 									<NavLink active={false}>Payment options</NavLink>
 									<NavLink active={false}>Reduced rates</NavLink>
 								</div>
+								<NavLink active={false} href={"/admin"}>Admin</NavLink>
+								<div className={"ml-5"}>
+									<NavLink active={false} href={"/admin/create"}>Create course</NavLink>
+									<NavLink active={false}>Reduced rates</NavLink>
+								</div>
 								<NavLink active={false}>Information sessions</NavLink>
 								<NavLink active={false}>Contact</NavLink>
 							</Nav>

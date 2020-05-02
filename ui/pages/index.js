@@ -46,10 +46,6 @@ export default class Homepage extends React.Component {
 
         return (
             <div>
-                <Head>
-                    <title>Create Next App</title>
-                    <link rel="icon" href="/public/favicon.ico"/>
-                </Head>
 
                 <Page>
 

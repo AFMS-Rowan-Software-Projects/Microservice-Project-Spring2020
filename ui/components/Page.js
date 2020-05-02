@@ -3,12 +3,16 @@ import Header from "./Header";
 import Container from "react-bootstrap/Container";
 import {Collapse, Nav, Navbar, NavLink, Row} from "react-bootstrap";
 import CoursePreview from "./CoursePreview";
+import Head from "next/head";
 
 export default class Page extends React.Component {
 
 	render() {
 		return (
 			<div className={"wrapper"}>
+				<Head>
+					<title>ABC Training</title>
+				</Head>
 				<Header/>
 				<Container fluid={true} className={"content"}>
 					<Row className={"h-100"}>

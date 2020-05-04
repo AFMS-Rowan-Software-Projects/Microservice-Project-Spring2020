@@ -3,13 +3,13 @@ import "../css/theme.scss"
 import React from "react";
 import fetch from "node-fetch";
 
-const WEB_URL = process.env.NODE_ENV !== "production" ? "http://localhost:3000" : "http://example";
 const PROD_URL = "http://example"; // TODO: implement
+const WEB_URL = process.env.NODE_ENV !== "production" ? "http://localhost:3000" : PROD_URL;
 
-// TODO: don't export this, use function below
+// this is the url of the webpage which is localhost unless this is running in production
 export const API_URL = `${WEB_URL}/api`;
 
-// TODO: use this
+// TODO: use this instead of exporting the url
 export async function api_fetch(req) {
 	let res;
 	await fetch(`${API_URL}/${req}`)

@@ -52,7 +52,7 @@ export default class CreateCourse extends React.Component {
 
 	async submit(e) {
 
-		e.preventDefault();
+		e.preventDefault(); // prevent the form from redirecting the user on its own
 		const name = document.getElementById("courseName").value;
 		const desc = document.getElementById("courseDesc").value;
 		const tuition = document.getElementById("courseTuition").value;
@@ -69,6 +69,7 @@ export default class CreateCourse extends React.Component {
 			"CategoryId": 2
 		};
 
+		// send a POST request to the api to add the course
 		// TODO: error handling
 		const res = await (await fetch(API_URL + "/courses", {
 			"method": "POST",
@@ -79,6 +80,7 @@ export default class CreateCourse extends React.Component {
 			"body": JSON.stringify(data)
 		})).json();
 
+		// if a valid ID is returned, redirect the user to the newly created course page
 		if (res.Id) {
 			document.location = `/courses/${res.Id}`
 		}

@@ -15,11 +15,12 @@ export default class Homepage extends React.Component {
         let courses = [];
         let err;
         try {
+            // get course list and put it in courses
             await fetch(API_URL + "/courses")
                 .then(res => res.json())
                 .then((data => {courses = data}));
         } catch (e) {
-            err = e;
+            err = e; // if there's an error, store for later handling
         }
 
         return {
@@ -38,6 +39,8 @@ export default class Homepage extends React.Component {
 
     render() {
 
+        // if we got an error just display an error page instead of the course list
+        // TODO: show what the actual error was instead of just a 500
         if (this.props.err) {
             return (
                 <Error500/>

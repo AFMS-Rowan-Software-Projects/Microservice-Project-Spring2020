@@ -5,6 +5,7 @@ const express = require("express");
 const app = express();
 const proxy = require("express-http-proxy");
 
+// forward everything through the proxy
 app.use("/", proxy(API_URL));
 
 app.listen(PORT, () => {
